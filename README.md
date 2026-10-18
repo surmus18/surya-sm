@@ -38,3 +38,7 @@ GitHub link (https://github.com/surmus18) is already added in the contact sectio
 ## Notes
 - Tech logos load from the Devicon CDN (jsDelivr), pinned to v2.16.0. Any logo that fails to load is hidden.
 - Tailwind CDN prints a "not for production" console warning; safe to ignore for a personal site.
+
+## Hero intro
+After the loader, `assets/avatar-video.mp4` plays once (muted, with Skip and Sound buttons), then the portrait appears and the eyes follow the cursor.
+Eye assets: `avatar-eyes.*` (portrait with eye openings), `eye-l/r-back.png`, `eye-l/r-iris.png`, `eye-l/r-lid.png`.

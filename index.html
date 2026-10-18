@@ -10,13 +10,14 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/avatar.png">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" as="image" href="assets/avatar.webp" type="image/webp">
+<link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
+<link rel="preload" as="image" href="assets/avatar-eyes.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=7">
+<noscript><style>.hero.intro-on .scene .layer{opacity:1}.intro-card{display:none}</style></noscript>
 </head>
 <body class="antialiased">
 <!-- White Liquid Droplets Loader -->
@@ -43,7 +44,8 @@
 
 <header class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-white/85 border-b border-violet-100/80">
   <nav class="max-w-6xl mx-auto flex items-center justify-between px-5 h-20" aria-label="Main">
-    <a href="#top" class="brand-link group select-none inline-flex items-center" aria-label="SURYA Home">
+    <a href="#top" class="brand-link group select-none inline-flex items-center gap-2.5 sm:gap-3" aria-label="SURYA Home">
+      <!-- <img src="assets/surya-logo-mark.png" alt="Surya Logo" class="w-8 h-8 sm:w-9 sm:h-9 object-contain group-hover:scale-105 transition-transform"> -->
       <span class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight text-slate-900 group-hover:text-violet-600 transition-colors">SURYA</span>
     </a>
     
@@ -96,7 +98,7 @@
 </div>
 
 <main id="top">
-<section class="hero">
+<section class="hero intro-on">
   <span class="spot s1" aria-hidden="true"></span><span class="spot s2" aria-hidden="true"></span><span class="spot s3" aria-hidden="true"></span>
   <div class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-6 md:gap-10 items-end relative">
     <div class="order-1 hero-copy">
@@ -112,65 +114,28 @@
     </div>
     <div class="order-2 flex justify-center items-end">
       <div class="stage" id="stage">
-        <div class="scene" id="scene">
+      <div class="intro-card" id="introCard">
+        <div class="intro-inner">
+          <video id="introVideo" muted playsinline preload="auto" poster="assets/avatar-video-poster.jpg" aria-label="Intro video of Surya T"><source src="assets/avatar-video.mp4" type="video/mp4"></video>
+        <!--   <button type="button" class="intro-btn intro-sound" id="introSound" aria-pressed="false">Sound off</button>
+          <button type="button" class="intro-btn intro-skip" id="introSkip">Skip intro</button> -->
+          <div class="intro-bar" aria-hidden="true"><i id="introBar"></i></div>
+        </div>
+      </div>
+      <div class="scene" id="scene">
           <div class="layer blob" aria-hidden="true"></div>
           <div class="layer ring" aria-hidden="true"></div>
           <div class="layer glyph" aria-hidden="true">&lt;/&gt;</div>
           <div class="layer avatar" id="avatarLayer">
-            <picture><source srcset="assets/avatar.webp" type="image/webp"><img id="avatar" src="assets/avatar.png" alt="Illustrated portrait of Surya T" width="1024" height="1024" fetchpriority="high"></picture>
-            <svg class="eye-svg" id="eyeSvg" viewBox="0 0 1024 1024" preserveAspectRatio="xMidYBottom meet" aria-hidden="true">
-              <defs>
-                <clipPath id="leftEyeClip">
-                  <path d="M 424 322 Q 435 315 445 312 Q 453 312 Q 465 313 475 319 Q 480 326 480 326 Q 472 329 462 330 Q 453 329 Q 444 328 434 326 Q 424 322 424 322 Z"/>
-                </clipPath>
-                <clipPath id="rightEyeClip">
-                  <path d="M 545 326 Q 554 318 563 313 Q 572 313 Q 581 313 591 317 Q 600 322 600 322 Q 591 327 581 329 Q 572 330 563 330 Q 554 329 545 326 Z"/>
-                </clipPath>
-                <radialGradient id="scleraGradL" cx="50%" cy="50%" r="60%">
-                  <stop offset="0%" stop-color="#ffffff"/>
-                  <stop offset="60%" stop-color="#e2dbed"/>
-                  <stop offset="100%" stop-color="#a494b8"/>
-                </radialGradient>
-                <radialGradient id="scleraGradR" cx="48%" cy="50%" r="60%">
-                  <stop offset="0%" stop-color="#ffffff"/>
-                  <stop offset="60%" stop-color="#e2dbed"/>
-                  <stop offset="100%" stop-color="#a494b8"/>
-                </radialGradient>
-                <radialGradient id="pupilGrad" cx="35%" cy="35%" r="65%">
-                  <stop offset="0%" stop-color="#2d173d"/>
-                  <stop offset="55%" stop-color="#14081e"/>
-                  <stop offset="100%" stop-color="#05020a"/>
-                </radialGradient>
-              </defs>
-
-              <!-- Left Eye (Viewer's left) -->
-              <g clip-path="url(#leftEyeClip)">
-                <rect x="415" y="305" width="75" height="32" fill="url(#scleraGradL)"/>
-                <path d="M 423 317 Q 453 311 480 323" stroke="rgba(25,10,35,0.45)" stroke-width="2.6" fill="none"/>
-                <g id="pupilL" class="pupil-target">
-                  <ellipse cx="453" cy="321" rx="9.5" ry="8.5" fill="url(#pupilGrad)"/>
-                  <circle cx="451" cy="319" r="2.4" fill="#ffffff"/>
-                  <circle cx="455" cy="323" r="1.2" fill="rgba(255,255,255,0.7)"/>
-                </g>
-                <path id="blinkL" class="blink-lid blink-l" d="M 420 310 Q 453 308 484 318 L 484 336 Q 453 336 420 330 Z" fill="#2d173d"/>
-              </g>
-              <path d="M 424 322 Q 435 315 445 312 Q 453 312 Q 465 313 475 319 Q 480 326 480 326" fill="none" stroke="#160824" stroke-width="2.8" stroke-linecap="round"/>
-              <path d="M 480 326 Q 472 329 462 330 Q 453 329 Q 444 328 434 326 Q 424 322 424 322" fill="none" stroke="#251230" stroke-width="1.6" stroke-linecap="round"/>
-
-              <!-- Right Eye (Viewer's right) -->
-              <g clip-path="url(#rightEyeClip)">
-                <rect x="535" y="305" width="75" height="32" fill="url(#scleraGradR)"/>
-                <path d="M 544 323 Q 572 311 600 319" stroke="rgba(25,10,35,0.45)" stroke-width="2.6" fill="none"/>
-                <g id="pupilR" class="pupil-target">
-                  <ellipse cx="572" cy="321" rx="9.5" ry="8.5" fill="url(#pupilGrad)"/>
-                  <circle cx="570" cy="319" r="2.4" fill="#ffffff"/>
-                  <circle cx="574" cy="323" r="1.2" fill="rgba(255,255,255,0.7)"/>
-                </g>
-                <path id="blinkR" class="blink-lid blink-r" d="M 540 312 Q 572 308 604 316 L 604 336 Q 572 336 540 332 Z" fill="#2d173d"/>
-              </g>
-              <path d="M 545 326 Q 554 318 563 313 Q 572 313 Q 581 313 591 317 Q 600 322 600 322" fill="none" stroke="#160824" stroke-width="2.8" stroke-linecap="round"/>
-              <path d="M 600 322 Q 591 327 581 329 Q 572 330 563 330 Q 554 329 545 326" fill="none" stroke="#251230" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
+            <div class="avatar-inner">
+            <img class="eye-back" src="assets/eye-l-back.png" alt="" aria-hidden="true" style="left:40.820%;top:29.688%;width:7.422%;height:3.613%">
+            <img class="eye-iris" id="irisL" src="assets/eye-l-iris.png" alt="" aria-hidden="true" style="left:42.676%;top:30.273%;width:2.734%;height:2.734%">
+            <img class="eye-back" src="assets/eye-r-back.png" alt="" aria-hidden="true" style="left:51.953%;top:30.078%;width:7.422%;height:3.809%">
+            <img class="eye-iris" id="irisR" src="assets/eye-r-iris.png" alt="" aria-hidden="true" style="left:54.395%;top:30.566%;width:2.734%;height:2.734%">
+            <picture><source srcset="assets/avatar-eyes.webp" type="image/webp"><img id="avatar" src="assets/avatar-eyes.png" alt="Illustrated portrait of Surya T" width="1024" height="1024" fetchpriority="high"></picture>
+            <div class="eye-lid lid-l" aria-hidden="true" style="left:41.699%;top:31.055%;width:5.762%;height:1.465%;clip-path:polygon(1.69% 63.33%,11.86% 40.0%,23.73% 20.0%,37.29% 9.33%,52.54% 6.67%,67.8% 13.33%,81.36% 30.67%,91.53% 54.67%,96.61% 70.67%,86.44% 82.0%,69.49% 88.67%,49.15% 91.33%,28.81% 90.0%,13.56% 83.33%);--blink:74%"><img src="assets/eye-l-lid.png" alt="" style="top:-146.67%;width:100%;height:146.67%"></div>
+            <div class="eye-lid lid-r" aria-hidden="true" style="left:52.637%;top:31.250%;width:6.055%;height:1.660%;clip-path:polygon(1.61% 58.82%,9.68% 42.35%,19.35% 25.29%,30.65% 12.94%,46.77% 8.24%,62.9% 15.29%,79.03% 35.29%,91.94% 58.82%,96.77% 76.47%,85.48% 88.24%,66.13% 90.59%,43.55% 88.24%,22.58% 84.71%,9.68% 76.47%);--blink:83%"><img src="assets/eye-r-lid.png" alt="" style="top:-129.41%;width:100%;height:129.41%"></div>
+            </div>
           </div>
           <div class="icon i1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg" alt="React"></div>
           <div class="icon i2"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nextjs/nextjs-original.svg" alt="Next.js"></div>
@@ -225,7 +190,7 @@
         <h3 class="font-display text-xl font-semibold">Web Developer, Peacesoft Technologies</h3>
         <p class="text-violet-700 text-sm mb-3">June 2024 to present</p>
         <ul class="list">
-          <li>Work on Kalvisali ERP, especially the Certificate and CMS modules.</li>
+          <li>Work on a college ERP software, especially the Certificate and CMS modules.</li>
           <li>Contribute to student and employee reporting features.</li>
           <li>Develop and maintain institutional websites using Next.js.</li>
           <li>Support database and Linux server operations.</li>
@@ -298,6 +263,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

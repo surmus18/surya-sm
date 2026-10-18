@@ -56,7 +56,7 @@ document.getElementById('track').innerHTML = row + row;
 
 // What I do
 const services = [
-  ['layers', 'ERP modules', 'Building and maintaining modules for Kalvisali ERP, including Certificate, CMS and reporting features.', '#7C3AED', '#A855F7'],
+  ['layers', 'ERP modules', 'Building and maintaining modules for a college ERP software, including Certificate, CMS and reporting features.', '#7C3AED', '#A855F7'],
   ['globe', 'Institutional websites', 'Developed 30+ institutional websites using Next.js and Tailwind CSS.', '#EC4899', '#F43F5E'],
   ['cart', 'E-commerce customization', 'Customizing OpenCart and WooCommerce storefronts, with payment gateway integrations.', '#F97316', '#F59E0B'],
   ['server', 'Servers and databases', 'Linux server operations, MySQL optimization, database backups and SSL management.', '#14B8A6', '#0EA5E9']
@@ -89,7 +89,7 @@ showSkills('Frontend');
 
 // Projects
 const projects = [
-  ['layers', 'Kalvisali ERP', 'My contribution: Certificate and CMS modules, with additional work on student and employee reports.', ['React (Vite)', 'PHP MVC', 'YAK Framework', 'MySQL'], '#7C3AED', '#A855F7'],
+  ['layers', 'College ERP Software', 'My contribution: Certificate and CMS modules, with additional work on student and employee reports.', ['React (Vite)', 'PHP MVC', 'YAK Framework', 'MySQL'], '#7C3AED', '#A855F7'],
   ['globe', 'Institutional Websites', 'Developed 30+ institutional websites using Next.js and Tailwind CSS.', ['Next.js', 'Tailwind CSS'], '#EC4899', '#F43F5E'],
   ['card', 'Accounts and Fee Management', 'Institutional fee ledgers, payment integrations and reports.', [], '#F97316', '#F59E0B'],
   ['award', 'Certificate Verification Portal', 'Certificate generation, QR validation and downloadable certificates.', [], '#14B8A6', '#22C55E'],
@@ -104,6 +104,54 @@ document.getElementById('projectGrid').innerHTML = projects.map(([i, t, d, tags,
     ${tags.length ? `<ul class="flex flex-wrap gap-2 mt-4">${tags.map(x => `<li class="text-xs px-2.5 py-1 rounded-full border" style="color:${c};border-color:${c}55;background:${c}12">${x}</li>`).join('')}</ul>` : ''}
   </div></article>`).join('');
 
+// Intro video -> portrait hand-off (video plays once after the loader, then the portrait follows your cursor)
+const hero = document.querySelector('.hero');
+const introCard = document.getElementById('introCard');
+const introVideo = document.getElementById('introVideo');
+const introBar = document.getElementById('introBar');
+const introSound = document.getElementById('introSound');
+const introSkip = document.getElementById('introSkip');
+let introDone = false, introStarted = false;
+
+function endIntro() {
+  if (introDone) return;
+  introDone = true;
+  if (introVideo) { introVideo.pause(); }
+  const cleanup = () => {
+    if (introCard) introCard.style.display = 'none';
+    if (introVideo) { introVideo.querySelectorAll('source').forEach(s => s.remove()); introVideo.load(); }
+  };
+  if (window.gsap && !reduced && introCard) {
+    hero.classList.remove('intro-on');
+    gsap.to(introCard, { opacity: 0, y: 24, scale: .97, duration: .8, ease: 'power2.inOut', onComplete: cleanup });
+    gsap.fromTo('.scene .layer', { opacity: 0 }, { opacity: 1, duration: 1, delay: .25, ease: 'power2.out', clearProps: 'opacity' });
+  } else {
+    hero.classList.remove('intro-on');
+    cleanup();
+  }
+}
+
+function playIntro() {
+  if (introStarted) return;
+  introStarted = true;
+  if (!introVideo || reduced) { endIntro(); return; }
+  introVideo.addEventListener('ended', endIntro);
+  introVideo.addEventListener('error', endIntro);
+  introVideo.addEventListener('timeupdate', () => {
+    if (introBar && introVideo.duration) introBar.style.transform = `scaleX(${introVideo.currentTime / introVideo.duration})`;
+  });
+  if (introSkip) introSkip.addEventListener('click', endIntro);
+  if (introSound) introSound.addEventListener('click', () => {
+    introVideo.muted = !introVideo.muted;
+    introSound.textContent = introVideo.muted ? 'Sound off' : 'Sound on';
+    introSound.setAttribute('aria-pressed', String(!introVideo.muted));
+  });
+  const p = introVideo.play();
+  if (p && p.catch) p.catch(endIntro);                       // autoplay blocked -> show portrait
+  setTimeout(() => { if (!introDone && introVideo.currentTime < 0.3) endIntro(); }, 6000);   // never get stuck
+  setTimeout(endIntro, 13000);                               // hard cap (video is 10s)
+}
+
 // White Liquid Droplets Loader + Hero Entrance
 const loader = document.getElementById('loader');
 const loaderBar = document.getElementById('loaderBar');
@@ -116,6 +164,7 @@ function startHeroEntrance() {
       .from('#stage', { y: 90, scale: .92, opacity: 0, duration: 1.2, ease: 'expo.out' }, .15)
       .from('.icon', { scale: 0, opacity: 0, duration: .6, stagger: .1, ease: 'back.out(2)' }, .85);
   }
+  playIntro();
 }
 
 if (loader) {
@@ -185,7 +234,7 @@ if (window.gsap && window.ScrollTrigger && !reduced) {
 // Interactive 3D mouse tracking (Scene, Face tilt & Eye tracking) + Blinking
 const stage = document.getElementById('stage'), scene = document.getElementById('scene');
 const avatarLayer = document.getElementById('avatarLayer');
-const pupilL = document.getElementById('pupilL'), pupilR = document.getElementById('pupilR');
+const irisL = document.getElementById('irisL'), irisR = document.getElementById('irisR');
 
 // Natural Blinking & Winking
 let blinkTimer = null;
@@ -227,32 +276,25 @@ if (!reduced) {
     const scx = r.left + r.width * 0.5;
     const scy = r.top + r.height * 0.5;
 
-    // Normalized screen delta relative to stage
-    const nx = Math.max(-1.4, Math.min(1.4, (clientX - scx) / (window.innerWidth * 0.45)));
-    const ny = Math.max(-1.4, Math.min(1.4, (clientY - scy) / (window.innerHeight * 0.45)));
+    // Normalized screen delta relative to stage (clamped to gentle range)
+    const nx = Math.max(-1, Math.min(1, (clientX - scx) / (window.innerWidth * 0.45)));
+    const ny = Math.max(-1, Math.min(1, (clientY - scy) / (window.innerHeight * 0.45)));
 
-    // Scene 3D tilt
-    targetSceneRy = nx * 18;
-    targetSceneRx = -ny * 14;
+    // Gentle Scene 3D tilt (subtle & restrained)
+    targetSceneRy = nx * 4.5;
+    targetSceneRx = -ny * 3.5;
 
-    // Face independent 3D tilt & shift
-    targetFaceRy = nx * 9;
-    targetFaceRx = -ny * 7;
-    targetFaceTx = nx * 6;
-    targetFaceTy = ny * 4;
+    // Gentle Face 3D tilt & shift
+    targetFaceRy = nx * 2.5;
+    targetFaceRx = -ny * 2.0;
+    targetFaceTx = nx * 2.0;
+    targetFaceTy = ny * 1.5;
 
-    // Eye pupil tracking: vector from eye centers to mouse
-    const eyeX = r.left + r.width * 0.5;
-    const eyeY = r.top + r.height * 0.32;
-    const dx = clientX - eyeX;
-    const dy = clientY - eyeY;
-    const angle = Math.atan2(dy, dx);
-    const dist = Math.min(1, Math.hypot(dx, dy) / 140);
-
-    const maxPupilX = 18.0; // Responsive, clearly visible SVG coordinate units
-    const maxPupilY = 11.0;
-    targetPupilX = Math.cos(angle) * dist * maxPupilX;
-    targetPupilY = Math.sin(angle) * dist * maxPupilY;
+    // Eyes follow the pointer smoothly (clean subtle pupil tracking)
+    const ex = Math.max(-1, Math.min(1, (clientX - (r.left + r.width * 0.5)) / (window.innerWidth * 0.30)));
+    const ey = Math.max(-1, Math.min(1, (clientY - (r.top + r.height * 0.34)) / (window.innerHeight * 0.30)));
+    targetPupilX = ex * 3.8;
+    targetPupilY = ey * 1.8;
   }
 
   // Smooth pointer tracking across hero, stage & window
@@ -298,14 +340,10 @@ if (!reduced) {
       avatarLayer.style.setProperty('--face-tx', `${currentFaceTx.toFixed(2)}px`);
       avatarLayer.style.setProperty('--face-ty', `${currentFaceTy.toFixed(2)}px`);
     }
-    if (pupilL && pupilR) {
-      const px = currentPupilX.toFixed(2);
-      const py = currentPupilY.toFixed(2);
-      const svgXform = `translate(${px} ${py})`;
-      pupilL.setAttribute('transform', svgXform);
-      pupilR.setAttribute('transform', svgXform);
-      pupilL.style.transform = `translate(${px}px, ${py}px)`;
-      pupilR.style.transform = `translate(${px}px, ${py}px)`;
+    if (irisL && irisR) {
+      const t = `translate(${(currentPupilX / 28 * 100).toFixed(2)}%, ${(currentPupilY / 28 * 100).toFixed(2)}%)`;   // iris sprite is 28px
+      irisL.style.transform = t;
+      irisR.style.transform = t;
     }
 
     requestAnimationFrame(animate);
@@ -324,7 +362,7 @@ if (!reduced) {
 
 // Scroll progress bar + active nav link
 const bar = document.getElementById('progress');
-const links = [...document.querySelectorAll('#menu a')];
+const links = [...document.querySelectorAll('.drawer-link')];
 const secs = links.map(a => document.querySelector(a.getAttribute('href')));
 let ticking = false;
 function onScroll() {
@@ -336,3 +374,6 @@ function onScroll() {
 }
 addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 onScroll();
+
+// If the loader is missing, still start the intro
+if (!loader) startHeroEntrance();
