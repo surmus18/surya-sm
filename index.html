@@ -11,7 +11,6 @@
 <meta property="og:image" content="assets/avatar.png">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
-<link rel="preload" as="image" href="assets/avatar-eyes.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -42,14 +41,14 @@
 
 <div id="progress" class="progress" aria-hidden="true"></div>
 
-<header class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-white/85 border-b border-violet-100/80">
-  <nav class="max-w-6xl mx-auto flex items-center justify-between px-5 h-20" aria-label="Main">
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-white/85 border-b border-slate-200">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between px-5 h-16" aria-label="Main">
     <a href="#top" class="brand-link group select-none inline-flex items-center gap-2.5 sm:gap-3" aria-label="SURYA Home">
       <!-- <img src="assets/surya-logo-mark.png" alt="Surya Logo" class="w-8 h-8 sm:w-9 sm:h-9 object-contain group-hover:scale-105 transition-transform"> -->
-      <span class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight text-slate-900 group-hover:text-violet-600 transition-colors">SURYA</span>
+      <span class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight text-slate-900 group-hover:text-blue-700 transition-colors">SURYA</span>
     </a>
     
-    <!-- Big Bars Floating Menu Toggle -->
+    <ul class="dnav hidden md:flex items-center gap-7"><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li><li><a href="assets/surya-resume.pdf" download class="btn btn-primary btn-sm !text-white">Resume</a></li></ul>
     <button id="menuBtn" class="menu-pill-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="menuDrawer">
       <span class="menu-pill-text font-display">Menu</span>
       <span class="menu-pill-bars" aria-hidden="true">
@@ -66,7 +65,7 @@
   <aside class="menu-drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation">
     <div class="menu-drawer-top">
       <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-violet-600"></span>
+        <span class="w-2 h-2 rounded-full bg-blue-600"></span>
         <span class="font-display font-bold text-base text-slate-800 tracking-wide uppercase">Navigation</span>
       </div>
       <button id="menuCloseBtn" class="menu-close-btn" aria-label="Close menu">
@@ -89,7 +88,7 @@
       <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2.5">Direct Connect</p>
       <div class="flex flex-wrap gap-2 mb-4">
         <a href="mailto:tsurya894@gmail.com" class="drawer-tag">tsurya894@gmail.com</a>
-        <a href="https://www.linkedin.com/in/surya-4b2650295/" target="_blank" rel="noopener" class="drawer-tag">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/surya-tsm/" target="_blank" rel="noopener" class="drawer-tag">LinkedIn</a>
         <a href="https://github.com/surmus18" target="_blank" rel="noopener" class="drawer-tag">GitHub</a>
       </div>
       <a href="assets/surya-resume.pdf" download class="btn btn-primary w-full text-center">Download Resume</a>
@@ -98,71 +97,49 @@
 </div>
 
 <main id="top">
-<section class="hero intro-on">
-  <span class="spot s1" aria-hidden="true"></span><span class="spot s2" aria-hidden="true"></span><span class="spot s3" aria-hidden="true"></span>
-  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-6 md:gap-10 items-end relative">
+<section class="hero">
+  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-6 md:gap-10 items-center relative">
     <div class="order-1 hero-copy">
-      <h1 class="hero-in font-display font-extrabold text-6xl sm:text-7xl lg:text-8xl grad-text leading-none">SURYA T</h1>
-      <p class="hero-in mt-6 text-xl font-semibold">Full Stack Developer</p>
-      <p class="hero-in text-violet-700 font-medium">React.js | Next.js | ERP Software Development</p>
-      <p class="hero-in mt-5 text-slate-600 max-w-md text-lg">Building practical ERP systems, modern web applications and responsive digital experiences.</p>
-      <div class="hero-in mt-8 flex flex-wrap gap-3">
+      <p class="hero-in pill"><i></i>3+ years of professional experience</p>
+      <h1 class="hero-in font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl grad-text leading-none">SURYA T</h1>
+      <p class="hero-in mt-4 text-xl font-semibold">Full Stack Developer</p>
+      <p class="hero-in text-blue-700 font-medium">React.js | Next.js | ERP Software Development</p>
+      <p class="hero-in mt-3 text-slate-600 max-w-md text-lg">Building practical ERP systems, modern web applications and responsive digital experiences.</p>
+      <div class="hero-in mt-6 flex flex-wrap gap-3">
         <a href="#projects" class="btn btn-primary">Explore My Work</a>
         <a href="assets/surya-resume.pdf" download class="btn btn-ghost">Download Resume</a>
         <a href="#contact" class="btn btn-ghost">Contact Me</a>
       </div>
     </div>
-    <div class="order-2 flex justify-center items-end">
-      <div class="stage" id="stage">
-      <div class="intro-card" id="introCard">
-        <div class="intro-inner">
-          <video id="introVideo" muted playsinline preload="auto" poster="assets/avatar-video-poster.jpg" aria-label="Intro video of Surya T"><source src="assets/avatar-video.mp4" type="video/mp4"></video>
-        <!--   <button type="button" class="intro-btn intro-sound" id="introSound" aria-pressed="false">Sound off</button>
-          <button type="button" class="intro-btn intro-skip" id="introSkip">Skip intro</button> -->
-          <div class="intro-bar" aria-hidden="true"><i id="introBar"></i></div>
-        </div>
-      </div>
-      <div class="scene" id="scene">
-          <div class="layer blob" aria-hidden="true"></div>
-          <div class="layer ring" aria-hidden="true"></div>
-          <div class="layer glyph" aria-hidden="true">&lt;/&gt;</div>
-          <div class="layer avatar" id="avatarLayer">
-            <div class="avatar-inner">
-            <img class="eye-back" src="assets/eye-l-back.png" alt="" aria-hidden="true" style="left:40.820%;top:29.688%;width:7.422%;height:3.613%">
-            <img class="eye-iris" id="irisL" src="assets/eye-l-iris.png" alt="" aria-hidden="true" style="left:42.676%;top:30.273%;width:2.734%;height:2.734%">
-            <img class="eye-back" src="assets/eye-r-back.png" alt="" aria-hidden="true" style="left:51.953%;top:30.078%;width:7.422%;height:3.809%">
-            <img class="eye-iris" id="irisR" src="assets/eye-r-iris.png" alt="" aria-hidden="true" style="left:54.395%;top:30.566%;width:2.734%;height:2.734%">
-            <picture><source srcset="assets/avatar-eyes.webp" type="image/webp"><img id="avatar" src="assets/avatar-eyes.png" alt="Illustrated portrait of Surya T" width="1024" height="1024" fetchpriority="high"></picture>
-            <div class="eye-lid lid-l" aria-hidden="true" style="left:41.699%;top:31.055%;width:5.762%;height:1.465%;clip-path:polygon(1.69% 63.33%,11.86% 40.0%,23.73% 20.0%,37.29% 9.33%,52.54% 6.67%,67.8% 13.33%,81.36% 30.67%,91.53% 54.67%,96.61% 70.67%,86.44% 82.0%,69.49% 88.67%,49.15% 91.33%,28.81% 90.0%,13.56% 83.33%);--blink:74%"><img src="assets/eye-l-lid.png" alt="" style="top:-146.67%;width:100%;height:146.67%"></div>
-            <div class="eye-lid lid-r" aria-hidden="true" style="left:52.637%;top:31.250%;width:6.055%;height:1.660%;clip-path:polygon(1.61% 58.82%,9.68% 42.35%,19.35% 25.29%,30.65% 12.94%,46.77% 8.24%,62.9% 15.29%,79.03% 35.29%,91.94% 58.82%,96.77% 76.47%,85.48% 88.24%,66.13% 90.59%,43.55% 88.24%,22.58% 84.71%,9.68% 76.47%);--blink:83%"><img src="assets/eye-r-lid.png" alt="" style="top:-129.41%;width:100%;height:129.41%"></div>
-            </div>
-          </div>
-          <div class="icon i1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg" alt="React"></div>
-          <div class="icon i2"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nextjs/nextjs-original.svg" alt="Next.js"></div>
-          <div class="icon i3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/php/php-original.svg" alt="PHP"></div>
-          <div class="icon i4"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg" alt="MySQL"></div>
-          <div class="icon i5"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
-          <div class="icon i6"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS"></div>
-        </div>
-      </div>
+    <div class="order-2 profile">
+      <div class="flex items-center gap-3 pb-4 border-b border-slate-200"><div class="mono">ST</div><div><p class="font-display font-bold text-lg leading-tight">Surya T</p><p class="text-sm text-slate-500">Full Stack &amp; ERP Developer</p></div></div>
+      <dl class="facts">
+        <div><dt>Currently</dt><dd>Peacesoft Technologies</dd></div>
+        <div><dt>Location</dt><dd>Tirunelveli, Tamil Nadu</dd></div>
+        <div><dt>Experience</dt><dd>3+ years</dd></div>
+        <div><dt>Focus</dt><dd>ERP &amp; institutional websites</dd></div>
+        <div><dt>Languages</dt><dd>Tamil, English</dd></div>
+      </dl>
+      <div class="flex flex-wrap gap-2 mt-4"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Tailwind CSS</span></div>
     </div>
   </div>
-  <a href="#about" class="scroll-hint hidden md:block" aria-label="Scroll to About"><span></span></a>
 </section>
 
 <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <section id="about" class="section">
-  <div class="max-w-5xl mx-auto grid md:grid-cols-5 gap-10 items-center">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-5 gap-8 items-center">
     <div class="md:col-span-3 reveal">
       <h2 class="h2">About me</h2>
       <p class="text-slate-600 text-lg leading-relaxed">I'm a web developer with three years of experience across ERP software, institutional websites and e-commerce storefronts. I enjoy turning everyday operational needs, like certificates, reports, fees and transport, into clear and dependable screens.</p>
-      <p class="text-slate-600 text-lg leading-relaxed mt-4">My work spans the full stack: React and Next.js on the front, PHP and MySQL behind it, and the Linux, backup and SSL work that keeps it all running.</p>
+      <p class="text-slate-600 text-lg leading-relaxed mt-4">My work spans the full stack: React and Next.js on the front, PHP and MySQL behind it, and the Linux server and database backup work that keeps it all running.</p>
+      <p class="text-slate-600 text-lg leading-relaxed mt-4">At Peacesoft Technologies I build ERP modules that colleges and schools use every day, from admissions and fee collection to TC and other certificates, and I ship SEO-friendly Next.js websites for institutions.</p>
     </div>
-    <div class="md:col-span-2 grid grid-cols-3 md:grid-cols-1 gap-4 reveal">
-      <div class="stat" style="--c:#7C3AED"><b>3+</b><span>Years of experience</span></div>
-      <div class="stat" style="--c:#EC4899"><b>30+</b><span>Institutional websites</span></div>
-      <div class="stat" style="--c:#F97316"><b>2</b><span>Companies</span></div>
+    <div class="md:col-span-2 grid grid-cols-2 gap-4 reveal">
+      <div class="stat" style="--c:#2457D6"><b>3+</b><span>Years of experience</span></div>
+      <div class="stat" style="--c:#2457D6"><b>30+</b><span>Institutional websites</span></div>
+      <div class="stat" style="--c:#2457D6"><b>30+</b><span>Colleges &amp; schools on ERP</span></div>
+      <div class="stat" style="--c:#2457D6"><b>2</b><span>Companies</span></div>
     </div>
   </div>
 </section>
@@ -175,37 +152,45 @@
 </section>
 
 <section id="skills" class="section">
-  <div class="max-w-4xl mx-auto reveal">
-    <h2 class="h2">Technical skills</h2>
-    <div role="tablist" aria-label="Skill categories" class="flex flex-wrap gap-2 mb-8" id="tabs"></div>
-    <div id="skillPanel" role="tabpanel" class="grid grid-cols-2 sm:grid-cols-3 gap-4 min-h-[10rem]"></div>
+  <div class="max-w-6xl mx-auto">
+    <h2 class="h2 reveal">Technical skills</h2>
+    <div id="skillPanel" role="tabpanel" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </div>
 </section>
 
 <section id="experience" class="section tint-b">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="h2 reveal">Experience</h2>
-    <ol class="timeline">
-      <li class="reveal" style="--c:#7C3AED">
-        <h3 class="font-display text-xl font-semibold">Web Developer, Peacesoft Technologies</h3>
-        <p class="text-violet-700 text-sm mb-3">June 2024 to present</p>
-        <ul class="list">
-          <li>Work on a college ERP software, especially the Certificate and CMS modules.</li>
-          <li>Contribute to student and employee reporting features.</li>
-          <li>Develop and maintain institutional websites using Next.js.</li>
-          <li>Support database and Linux server operations.</li>
-        </ul>
-      </li>
-      <li class="reveal" style="--c:#EC4899">
-        <h3 class="font-display text-xl font-semibold">Web Developer, Nexify Software</h3>
-        <p class="text-pink-600 text-sm mb-3">August 2023 to June 2024</p>
-        <ul class="list">
-          <li>Built responsive websites and web applications using HTML, CSS, JavaScript, PHP and Tailwind CSS.</li>
-          <li>Customized OpenCart and WooCommerce storefronts.</li>
-          <li>Worked on website speed and database optimization.</li>
-        </ul>
-      </li>
-    </ol>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-5 gap-8">
+    <div class="md:col-span-3">
+      <h2 class="h2 reveal">Experience</h2>
+      <ol class="timeline">
+        <li class="reveal" style="--c:#2457D6">
+          <h3 class="font-display text-xl font-semibold">Web Developer, Peacesoft Technologies</h3>
+          <p class="text-blue-700 text-sm mb-3">June 2024 to present</p>
+          <ul class="list">
+            <li>Work on a college ERP software, especially the Certificate and CMS modules.</li>
+            <li>Build admissions, fee collection and certificate (TC and others) workflows with role-based dashboards.</li>
+            <li>Contribute to student and employee reporting features.</li>
+            <li>Develop and maintain 30+ institutional websites using Next.js and Tailwind CSS.</li>
+            <li>Handle Linux server tasks, database backups and database optimization.</li>
+          </ul>
+        </li>
+        <li class="reveal" style="--c:#2457D6">
+          <h3 class="font-display text-xl font-semibold">Web Developer, Nexify Software</h3>
+          <p class="text-blue-700 text-sm mb-3">August 2023 to June 2024</p>
+          <ul class="list">
+            <li>Built responsive websites and web applications using HTML, CSS, JavaScript, PHP and Tailwind CSS.</li>
+            <li>Customized OpenCart storefronts.</li>
+            <li>Worked on website speed and database optimization.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div class="md:col-span-2 space-y-4 reveal">
+      <h2 class="h2">Education</h2>
+      <div class="info"><h3 class="font-display font-semibold">Bachelor of English Literature</h3><p class="text-sm text-blue-700">Sadakathullah Appa College &middot; 2020 to 2023</p></div>
+      <div class="info"><h3 class="font-display font-semibold">Full Stack Development Certification</h3><p class="text-sm text-blue-700">Appolo Institute of Science and Technologies &middot; Feb to Jul 2023</p><p class="text-sm text-slate-600 mt-2">Training in HTML, CSS, JavaScript, PHP, MySQL, REST APIs and MVC frameworks.</p></div>
+      <div class="info"><h3 class="font-display font-semibold">Languages</h3><p class="text-sm text-slate-600">Tamil (fluent) &middot; English (fluent)</p></div>
+    </div>
   </div>
 </section>
 
@@ -213,19 +198,21 @@
   <div class="max-w-6xl mx-auto">
     <h2 class="h2 reveal">Featured projects</h2>
     <div id="projectGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div class="info mt-6 flex flex-wrap items-center gap-3 reveal"><b class="text-sm">Live websites:</b><a class="tag" href="https://xibasxc.com" target="_blank" rel="noopener">xibasxc.com</a><a class="tag" href="https://americancollege.edu.in" target="_blank" rel="noopener">americancollege.edu.in</a><a class="tag" href="https://vrscet.edu.in" target="_blank" rel="noopener">vrscet.edu.in</a></div>
   </div>
 </section>
 
 <section id="contact" class="section">
-  <div class="max-w-4xl mx-auto cta reveal">
+  <div class="max-w-6xl mx-auto cta reveal">
     <h2 class="font-display font-extrabold text-3xl sm:text-4xl">Let's build something together</h2>
     <p class="mt-3 text-white/85 max-w-xl mx-auto">Have a project, an ERP requirement or a website to build? Send me a message.</p>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a class="btn bg-white text-violet-800" href="mailto:tsurya894@gmail.com">Email me</a>
-      <a class="btn btn-outline" href="https://www.linkedin.com/in/surya-4b2650295/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn bg-white text-blue-700" href="mailto:tsurya894@gmail.com">Email me</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/surya-tsm/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-outline" href="https://github.com/surmus18" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5 reveal"><a class="info block" href="mailto:tsurya894@gmail.com"><p class="text-xs uppercase tracking-wider text-slate-500">Email</p><p class="font-semibold mt-1 break-words">tsurya894@gmail.com</p></a><a class="info block" href="tel:+919994439803"><p class="text-xs uppercase tracking-wider text-slate-500">Phone</p><p class="font-semibold mt-1 break-words">+91 999 443 9803</p></a><div class="info block" ><p class="text-xs uppercase tracking-wider text-slate-500">Location</p><p class="font-semibold mt-1 break-words">Tirunelveli, Tamil Nadu</p></div><a class="info block" href="https://www.linkedin.com/in/surya-tsm/" target="_blank" rel="noopener"><p class="text-xs uppercase tracking-wider text-slate-500">LinkedIn</p><p class="font-semibold mt-1 break-words">linkedin.com/in/surya-tsm</p></a></div>
 </section>
 </main>
 
@@ -234,7 +221,7 @@
     <div class="grid md:grid-cols-4 gap-10 pb-14">
       <div class="md:col-span-2">
         <p class="font-display text-3xl font-extrabold">Surya T</p>
-        <p class="mt-3 text-violet-200 max-w-sm">Full Stack Developer building ERP modules, institutional websites and responsive web applications with React, Next.js, PHP and MySQL.</p>
+        <p class="mt-3 text-slate-600 max-w-sm">Full Stack Developer building ERP modules, institutional websites and responsive web applications with React, Next.js, PHP and MySQL.</p>
         <a href="assets/surya-resume.pdf" download class="btn btn-primary mt-6">Download Resume</a>
       </div>
       <div>
@@ -248,13 +235,13 @@
         <h3 class="foot-h">Connect</h3>
         <ul class="foot-list">
           <li><a href="mailto:tsurya894@gmail.com">tsurya894@gmail.com</a></li>
-          <li><a href="https://www.linkedin.com/in/surya-4b2650295/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/surya-tsm/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://github.com/surmus18" target="_blank" rel="noopener">GitHub</a></li>
         </ul>
       </div>
     </div>
     <p class="watermark" aria-hidden="true">SURYA T</p>
-    <div class="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 py-6 text-sm text-violet-300 relative">
+    <div class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 py-6 text-sm text-slate-500 relative">
       <p>&copy; <span id="year"></span> Surya T. All rights reserved.</p>
       <a href="#top" class="underline">Back to top</a>
     </div>
